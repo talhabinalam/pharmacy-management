@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+    <div class="pt-3">
+
+        <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Generic Name</th>
+                        <th>Manufacturer</th>
+                        <th>Description</th>
+                        <th>Unit Price</th>
+                        <th>Batch No.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if medicines.exists %}
+                        {% for medicine in medicines %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ medicine.name }}</td>
+                            <td>{{ medicine.generic_name }}</td>
+                            <td>{{ medicine.manufacturer }}</td>
+                            <td><small>{{ medicine.description }}</small></td>
+                            <td>{{ medicine.price }}</td>
+                            <td>{{ medicine.batch_number }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center">No medicines found.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

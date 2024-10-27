@@ -54,8 +54,8 @@
                 <!-- Dashboard Link (Styled Differently) -->
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link text-white bg-primary py-2 mb-2 rounded dashboard" href="#">
-                            <i class="fas fa-home"></i>&nbsp;&nbsp;Dashboard
+                        <a class="nav-link text-white bg-primary py-2 mb-2 rounded dashboard" href="{% url 'index' %}">
+                            <i class="fas fa-home"></i>&nbsp;&nbsp;Home
 
                         </a>
                     </li>
@@ -65,7 +65,7 @@
         
                     <!-- Medicine Links -->
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="{% url 'all_medicines' %}">
                             <i class="fas fa-th-list"></i> All Medicines
                         </a>
                     </li>
