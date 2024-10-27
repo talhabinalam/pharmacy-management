@@ -1,0 +1,111 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Medicine Index Application">
+    <title>Medicine Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap, Font Awesome, and Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&family=Merriweather&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!-- Inline Styles -->
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+        }
+        h3, .dashboard {
+            font-family: 'Pattaya', sans-serif;
+        }
+        .nav-link:hover {
+            color: #0dcaf0;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Online Pharmacy</a>
+    <ul class="navbar-nav px-3 flex-row">
+        
+        {% if not request.user_is_authenticated %}
+            
+        <li class="nav-item text-nowrap">
+            <a class="nav-link text-white" href="#">Login</a>
+        </li>
+        {% else %}
+        <li class="nav-item text-nowrap ms-3">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+                    
+        {% endif %}
+    </ul>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+        
+                <!-- Dashboard Link (Styled Differently) -->
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white bg-primary py-2 mb-2 rounded dashboard" href="#">
+                            <i class="fas fa-home"></i>&nbsp;&nbsp;Dashboard
+
+                        </a>
+                    </li>
+                    
+                    <!-- Section Divider -->
+                    <hr>
+        
+                    <!-- Medicine Links -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-th-list"></i> All Medicines
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-plus-circle"></i> Add Medicine
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-edit"></i> Edit Medicine
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-trash-alt"></i> Delete Medicine
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>        
+
+    {% block content %} {% endblock %}
+        
+    </div>
+</div>
+
+<!-- Footer Section -->
+<footer style="position: absolute; bottom: 10px; width: 100%; text-align: center; padding: 10px; background-color: #f8f9fa; border-top: 1px solid #ddd;">
+    <p style="font-size: 12px; color: #6c757d; margin: 0;">&copy; 2024 Online Pharmacy. All rights reserved.</p>
+    <p style="font-size: 12px; color: #6c757d; margin: 0;">Privacy Policy | Terms of Service</p>
+</footer>
+
+<!-- JavaScript from CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+<script>
+    feather.replace();
+</script>
+
+</body>
+</html>

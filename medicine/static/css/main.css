@@ -1,0 +1,32 @@
+table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Collapse borders */
+    margin: 20px 0; /* Space above and below */
+    font-family: Arial, sans-serif; /* Formal font */
+    font-size: 15px; /* Font size */
+}
+
+th, td {
+    padding: 5px; /* Padding for cells */
+    text-align: center; /* Center text */
+    border: 1px solid #ddd; /* Light border */
+}
+
+th {
+    background-color: #f2f2f2; /* Header background color */
+    font-weight: bold; /* Bold header text */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Background for even rows */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Hover effect */
+}
+
+small {
+    font-size: 15px; /* Smaller font for descriptions */
+    color: #555; /* Description text color */
+}
+
