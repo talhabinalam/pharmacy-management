@@ -1,4 +1,4 @@
-# Online Pharmacy Management System
+# Pharmacy Management System
 
 This project is an Online Pharmacy Management System built with Django Backend and HTML,CSS for Frontend. It provides an interface for administrators to manage medicines in an inventory, including adding, editing, and deleting entries. Regular users can view and search for medicines in the inventory. This project demonstrates CRUD operations, authentication, and role-based access control in Django.
 
