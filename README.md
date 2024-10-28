@@ -36,7 +36,7 @@ This project is an Online Pharmacy Management System built with Django Backend a
 ```bash
 git clone https://github.com/talhabinalam/online-pharmacy-django.git
 ```
-__Directory:__
+__Change Directory:__
 ```bash
 cd directory (e.g: cd pharmacy)
 ```
