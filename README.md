@@ -35,8 +35,12 @@ This project is an Online Pharmacy Management System built with Django Backend a
 
 ```bash
 git clone https://github.com/talhabinalam/online-pharmacy-django.git
+```
+__Directory:__
+```bash
 cd directory (e.g: cd pharmacy)
 ```
+
 #### 2. Set Up a Virtual Environment Create a virtual environment to isolate dependencies.
 ```bash
 python -m venv venv
