@@ -59,7 +59,8 @@ python manage.py migrate
 ```bash  
 python manage.py createsuperuser
 ```
-Use __admin__ as username and password for the existing database.
+#### Note: Use __admin__ as username and password for the existing database.
+
 #### 6. Run the Development Server Start the Django development server.
 ```bash  
 python manage.py runserver
