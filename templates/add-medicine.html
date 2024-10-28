@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="max-height: 90vh; overflow-y: auto; padding-bottom: 2rem;">
+    <br>
+        <!-- Display messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+<h1 class="mb-3" style="font-family: 'Pattaya', sans-serif; text-align: center">
+        {% if medicine %}Edit Medicine{% else %}Add Medicine{% endif %}
+    </h1>
+    
+    <form class="needs-validation" method="post" action="{% if medicine %}{% url 'edit-medicine' medicine.id %}{% else %}{% url 'add-medicine' %}{% endif %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                <label for="name" class="form-label">Medicine Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Medicine Name" required value="{{ medicine.name|default_if_none:'' }}">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                <label for="generic_name" class="form-label">Generic Name</label>
+                <input type="text" class="form-control" id="generic_name" name="generic_name" placeholder="Generic Name" required value="{{ medicine.generic_name|default_if_none:'' }}">
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <label for="manufacturer" class="form-label">Manufacturer</label>
+                <input type="text" class="form-control" id="manufacturer" name="manufacturer" placeholder="Manufacturer Name" required value="{{ medicine.manufacturer|default_if_none:'' }}">
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Medicine Description" rows="3" required>{{ medicine.description|default_if_none:'' }}</textarea>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                <label for="price" class="form-label">Unit Price</label>
+                <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Price" required value="{{ medicine.price|default_if_none:'' }}">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                <label for="batch_number" class="form-label">Batch Number</label>
+                <input type="number" class="form-control" id="batch_number" name="batch_number" placeholder="Batch Number" required value="{{ medicine.batch_number|default_if_none:'' }}">
+            </div>
+        </div>
+        <hr class="my-4">
+        <button class="w-100 btn btn-primary btn-sm" type="submit">
+            {% if medicine %}Update Medicine{% else %}Add Medicine{% endif %}
+        </button>
+    </form>
+</main>
+    
+{% block footer %}
+
+<!-- Footer Section -->
+<footer style=" position: absolute; bottom: 10px; width: 100%; text-align: center; padding: 10px; background-color: #f8f9fa; border-top: 1px solid #ddd;">
+    <p style="font-size: 12px; color: #6c757d; margin: 0;">&copy; 2024 Online Pharmacy. All rights reserved.</p>
+    <p style="font-size: 12px; color: #6c757d; margin: 0;">Privacy Policy | Terms of Service</p>
+</footer>
+
+{% endblock %}
+
+{% endblock %}

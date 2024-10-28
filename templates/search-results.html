@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    
+
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
     <div class="pt-3">
+        <h3 class="text-center mb-4">
+            {% if query %} Search Results for "{{ query }}" {% else %} All Medicines {% endif %}
+        </h3>
+    
+        <div class="mb-3">
+        <form class="d-flex" role="search" action="{% url 'search' %}" method="GET">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search for medicine by name or generic name" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
 
-        <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+        </div>
+
+        <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -42,5 +52,15 @@
         </div>
     </div>
 </main>
+
+{% block footer %}
+
+<!-- Footer Section -->
+<footer style=" position: absolute; bottom: 5px; width: 100%; text-align: center; padding: 10px; background-color: #f8f9fa; border-top: 1px solid #ddd;">
+    <p style="font-size: 12px; color: #6c757d; margin: 0;">&copy; 2024 Online Pharmacy. All rights reserved.</p>
+    <p style="font-size: 12px; color: #6c757d; margin: 0;">Privacy Policy | Terms of Service</p>
+</footer>
+
+{% endblock %}
 
 {% endblock %}

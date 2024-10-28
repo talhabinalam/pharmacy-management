@@ -1,17 +1,16 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from medicine.models import Medicine
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class IndexView(View):
     def get(self, request):
         medicines = Medicine.objects.all()
-        paginator = Paginator(medicines, 5)  # Show 5 contacts per page.
+        paginator = Paginator(medicines, 5)  # Show 5 medicines per page.
 
         user = request.user
 
@@ -26,17 +25,15 @@ class IndexView(View):
 
 class SearchView(View):
     def get(self, request):
-        query = request.GET.get('q')  # Get the search query from the request
+        query = request.GET.get('q')
         medicines = Medicine.objects.all()
 
-        if query:  # Check if there is a search keyword
-            # Use Q to filter based on case-insensitive search for name or generic name
+        if query:
             medicines = medicines.filter(
                 Q(name__icontains=query) |
                 Q(generic_name__icontains=query)
             )
             # print(f"Query: {query}, Results found: {medicines.count()}")
-
         else:
             medicines = Medicine.objects.none()
             print("No search query provided.")
@@ -45,13 +42,13 @@ class SearchView(View):
             'medicines': medicines,
             'query': query
         }
-        return render(request, 'search_results.html', context)
+        return render(request, 'search-results.html', context)
 
 
-class AllMedicinesView(View):
+class MedicinesListView(View):
     def get(self, request):
         medicines = Medicine.objects.all()
-        return render(request, 'all_medicines.html', {'medicines': medicines})
+        return render(request, 'medicines-list.html', {'medicines': medicines})
 
 
 class LoginView(View):
@@ -79,7 +76,52 @@ class LogoutView(View):
         return redirect('index')
 
 
-class AddMedicineView(View):
-    def post(self, request):
-        if request.user.is_authenticated:
-            medicine_name = request.POST.get('medicine_name')
+class AddOrEditMedicineView(View):
+    def get(self, request, medicine_id=None):
+        medicine = None
+        if medicine_id:
+            medicine = get_object_or_404(Medicine, id=medicine_id)
+        return render(request, 'add-medicine.html', {'medicine': medicine})
+
+    def post(self, request, medicine_id=None):
+        name = request.POST.get('name')
+        generic_name = request.POST.get('generic_name')
+        manufacturer = request.POST.get('manufacturer')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        batch_number = request.POST.get('batch_number')
+
+        if medicine_id:  # Editing
+            medicine = get_object_or_404(Medicine, id=medicine_id)
+            medicine.name = name
+            medicine.generic_name = generic_name
+            medicine.manufacturer = manufacturer
+            medicine.description = description
+            medicine.price = price
+            medicine.batch_number = batch_number
+            medicine.save()
+            messages.success(request, "Medicine updated successfully!")
+        else:  # Adding
+            Medicine.objects.create(
+                name=name,
+                generic_name=generic_name,
+                manufacturer=manufacturer,
+                description=description,
+                price=price,
+                batch_number=batch_number
+            )
+            messages.success(request, "Medicine added successfully!")
+            return redirect('add-medicine')
+
+        return redirect('medicines-list')
+
+
+class DeleteMedicineView(View):
+    def post(self, request, medicine_id):
+        medicine = get_object_or_404(Medicine, id=medicine_id)
+        medicine.delete()
+        messages.success(request, "Medicine deleted successfully!")
+        return redirect('medicines-list')  # Redirect to the medicines list page
+
+
+
