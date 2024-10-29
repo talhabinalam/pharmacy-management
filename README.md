@@ -3,11 +3,11 @@
 This project is an Online Pharmacy Management System built with Django Backend and HTML,CSS for Frontend. It provides an interface for administrators to manage medicines in an inventory, including adding, editing, and deleting entries. Regular users can view and search for medicines in the inventory. This project demonstrates CRUD operations, authentication, and role-based access control in Django.
 
 ## Features
-#### User Authentication
+### User Authentication
 * __Admin Login__: Only users with superuser/admin privileges can add, edit, or delete medicines.
 * __User__: Regular users can log in and view the medicine inventory, but they cannot modify it.
 
-#### Medicine Management (Admin Only)
+### Medicine Management (Admin Only)
 
 * **Add Medicine**: Admins can add new medicines to the inventory, specifying details such as name, generic name, manufacturer, description, price, and batch number.
 * **Edit Medicine**: Admins can update information for existing medicines.
