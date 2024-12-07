@@ -31,7 +31,7 @@ This project is an Online Pharmacy Management System built with Django Backend a
 
 ## Setup Instructions
 
-#### 1. Clone the Repository.
+#### 1. Clone the Repository:
 
 ```bash
 git clone https://github.com/talhabinalam/pharmacy-management.git
@@ -41,21 +41,22 @@ __Change Directory:__
 cd pharmacy-management
 ```
 
-#### 2. Set Up a Virtual Environment Create a virtual environment to isolate dependencies.
+#### 2. Set Up a Virtual Environment:
 ```bash
 python -m venv venv
 source venv/bin/activate   # On macOS/Linux
 venv\Scripts\activate      # On Windows
 ```
-#### 3. Install Dependencies Install all required dependencies from requirements.txt
+#### 3. Install Dependencies:
 ```bash  
 pip install -r requirements.txt
 ```
-#### 4. Apply Migrations Set up the database by applying migrations (For new database).
+#### 4. Apply Migrations Set up the database:
 ```bash  
+python manage.py makemigrations
 python manage.py migrate
 ```
-#### 5. Create an admin user to access the management features.
+#### 5. Create an admin user to access the management features:
 ```bash  
 python manage.py createsuperuser
 ```
@@ -65,6 +66,8 @@ python manage.py createsuperuser
 ```bash  
 python manage.py runserver
 ```
+
+### Access application: http://127.0.0.1:8000/
 
 
 # Project Structure
@@ -94,3 +97,6 @@ Regular users can:
 The `requirements.txt` file includes all necessary Python packages. Major dependencies include:
 
 * **Django**: For building the web application.
+
+## Overview:
+![image](https://github.com/user-attachments/assets/51b667cb-c9b4-4072-8770-fa5f213676a9)
