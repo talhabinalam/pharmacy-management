@@ -34,13 +34,12 @@ This project is an Online Pharmacy Management System built with Django Backend a
 #### 1. Clone the Repository:
 
 ```bash
-git clone https://github.com/talhabinalam/pharmacy-management.git
+git clone https://github.com/talhabinalam/pharmacy-management-system.git
 ```
 __Change Directory:__
 ```bash
-cd pharmacy-management
+cd pharmacy-management-system
 ```
-
 #### 2. Set Up a Virtual Environment:
 ```bash
 python -m venv venv
